@@ -24,27 +24,29 @@ if (active) {
 	}
 	
 	
-	// Test for a win
-	var chain = true;
-	
-	for (i = 0; i < 9 && chain; i++) {
+	// Test for a win from lo -> hi
+	var lohi = true;
+	for (i = 0; i < 9 && lohi; i++) {
 		if (players[curPlayer].cards[i] > players[curPlayer].cards[i + 1])
-			chain = false;
+			lohi = false;
 	}
 	
-	if (chain) {
+	// Test for a win from hi -> lo
+	var hilo = true;
+	for (i = 9; i > 0 && hilo; i--) {
+		if (players[curPlayer].cards[i] > players[curPlayer].cards[i - 1])
+			hilo = false;
+	}
+	
+	if (lohi || hilo) {
 		show_message(players[curPlayer].name + " has gotten a racko!");
 		game_end();
 	}
 		
 		
 	// Clear shit
-	discardSelected = false;
-	stackSelected   = false;
-	
-	o_stack.sImg = 0;
-	if (discardSize == 0) o_discard.sImg = 1;
-	else o_discard.sImg = 0;
+	scr_clearDiscard();
+	scr_clearStack();
 	
 	cards[index].selected = false;
 	cards[index].y += 20;

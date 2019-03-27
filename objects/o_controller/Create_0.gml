@@ -26,7 +26,7 @@ for (i = 0; i < stackSize; i++)
 	
 	
 // Shuffle the stack
-for (i = 0; i < 10000; i++) {
+for (i = 0; i < 100000; i++) {
 	// Find some index
 	x = random_range(0, stackSize);
 	y = random_range(0, stackSize);
